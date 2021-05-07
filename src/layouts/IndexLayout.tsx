@@ -8,17 +8,21 @@ import Greeting from "../components/Greeting";
 export const Query = graphql`
   query IndexLayoutQuery {
     viewer {
-      ...Greeting_user
+      ...Greeting_viewer
     }
   }
 `;
 
 const IndexLayout: FunctionComponent = () => {
-  const data = useLazyLoadQuery<IndexLayoutQuery>(Query, {});
+  const data = useLazyLoadQuery<IndexLayoutQuery>(
+    Query,
+    {},
+    { fetchPolicy: "store-only" }
+  );
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <Greeting user={data.viewer} />
+    <div className="space-y-8 text-center mt-8">
+      <Greeting viewer={data.viewer} />
     </div>
   );
 };

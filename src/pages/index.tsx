@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
+import { FunctionComponent } from "react";
 
 import IndexLayout, { Query } from "../layouts/IndexLayout";
 import fetchQueryRecords from "../relay/fetchQueryRecords";
 import withRelay, { RelayProps } from "../relay/withRelay";
 
-const IndexPage = () => {
+const IndexPage: FunctionComponent = () => {
   return <IndexLayout />;
 };
 

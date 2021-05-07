@@ -2,20 +2,20 @@ import { FunctionComponent } from "react";
 import { useFragment } from "react-relay";
 import { graphql } from "relay-runtime";
 
-import { Greeting_user$key } from "../__generated__/relay/Greeting_user.graphql";
+import { Greeting_viewer$key } from "../__generated__/relay/Greeting_viewer.graphql";
 
 const fragment = graphql`
-  fragment Greeting_user on User {
+  fragment Greeting_viewer on User {
     login
   }
 `;
 
 interface Props {
-  user: Greeting_user$key;
+  viewer: Greeting_viewer$key;
 }
 
 const Greeting: FunctionComponent<Props> = (props) => {
-  const user = useFragment(fragment, props.user);
+  const user = useFragment(fragment, props.viewer);
 
   return (
     <div className="text-3xl">

@@ -9,5 +9,5 @@ export default function createEnvironment(
   const store = new Store(recordSource);
 
   // We're forcing this here because in production, there is no network!
-  return new Environment({ store, network: network! });
+  return new Environment({ store, network: network!, isServer: !network });
 }

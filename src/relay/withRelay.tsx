@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useMemo } from "react";
 import { RelayEnvironmentProvider } from "react-relay";
 import { RecordMap } from "relay-runtime/lib/store/RelayStoreTypes";
 import createRelayEnvironment from "./createRelayEnvironment";
@@ -9,12 +9,14 @@ export interface RelayProps {
 }
 
 const withRelay = (ComposedComponent: NextPage) => {
-  const WithRelay: FunctionComponent<RelayProps> = ({ records }) => {
-    const environment = createRelayEnvironment(records);
+  const WithRelay: FunctionComponent<RelayProps> = (props) => {
+    const environment = useMemo(() => createRelayEnvironment(props.records), [
+      props.records,
+    ]);
 
     return (
       <RelayEnvironmentProvider environment={environment}>
-        <ComposedComponent />
+        <ComposedComponent {...props} />
       </RelayEnvironmentProvider>
     );
   };
