@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Update npm packages if they're found weekly.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+
+  # Update Github Actions if they're found weekly.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
